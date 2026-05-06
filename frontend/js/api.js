@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:8080';
+const API_BASE = 'https://your-railway-url.up.railway.app';
 
 async function submitRequest(data) {
     const response = await fetch(`${API_BASE}/api/requests`, {
