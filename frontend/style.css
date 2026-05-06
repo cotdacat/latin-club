@@ -539,3 +539,95 @@ footer {
     border-bottom: 2px solid var(--purple-dark);
     padding-bottom: 2px;
 }
+
+/* HAMBURGER BUTTON */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--purple-dark);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--purple-light);
+        flex-direction: column;
+        padding: 1rem 2rem;
+        gap: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        z-index: 99;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .navbar {
+        position: relative;
+    }
+
+    /* HERO */
+    .hero {
+        height: 320px;
+    }
+
+    .hero-overlay h1 {
+        font-size: 2.5rem;
+    }
+
+    /* NAV CARDS */
+    .nav-cards {
+        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .card {
+        min-width: unset;
+        width: 100%;
+    }
+
+    /* REQUEST FORM */
+    .form-row {
+        flex-direction: column;
+    }
+
+    /* PAGE CONTENT */
+    .page-content {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+
+    /* CREW CAROUSEL */
+    .carousel-track-wrapper {
+        max-width: 260px;
+    }
+    
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--cream) !important;
+        color: var(--text) !important;
+    }
+}

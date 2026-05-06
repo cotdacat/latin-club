@@ -10,8 +10,13 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-brand">UHS Latin</div>
-        <div class="nav-links">
+        <div class="nav-brand" id="navBrand">UHS Latin</div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
             <a href="pages/language.html">Language</a>
             <a href="pages/literature.html">Literature</a>
             <a href="pages/library.html">Library</a>
@@ -199,6 +204,12 @@
             });
 
             document.querySelector('.nav-brand').style.cursor = 'pointer';
+
+            // HAMBURGER MENU
+            document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+            });
+
         </script>
 
 </body>

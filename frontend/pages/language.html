@@ -11,13 +11,17 @@
 
     <nav class="navbar">
         <div class="nav-brand" id="navBrand">UHS Latin</div>
-        <div class="nav-links">
-            <a href="../index.html">Home</a>
-            <a href="language.html" class="nav-active">Language</a>
-            <a href="literature.html">Literature</a>
-            <a href="library.html">Library</a>
-            <a href="class-review.html">Class Review</a>
-            <a href="latin-club.html">Latin Club</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="pages/language.html" class="nav-active">Language</a>
+            <a href="pages/literature.html">Literature</a>
+            <a href="pages/library.html">Library</a>
+            <a href="pages/class-review.html">Class Review</a>
+            <a href="pages/latin-club.html">Latin Club</a>
         </div>
     </nav>
 
@@ -71,6 +75,12 @@
             brandTimer = setTimeout(() => { brandClicks = 0; }, 2000);
         });
         document.getElementById('navBrand').style.cursor = 'pointer';
+
+        // HAMBURGER MENU
+        document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+        });
+
     </script>
 
 </body>
