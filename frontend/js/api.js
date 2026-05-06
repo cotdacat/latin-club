@@ -1,4 +1,4 @@
-const API_BASE = 'https://your-railway-url.up.railway.app';
+const API_BASE = 'latin-club-production.up.railway.app';
 
 async function submitRequest(data) {
     const response = await fetch(`${API_BASE}/api/requests`, {
