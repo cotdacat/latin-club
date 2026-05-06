@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UHS Latin Club</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">UHS Latin</div>
+        <div class="nav-links">
+            <a href="pages/language.html">Language</a>
+            <a href="pages/literature.html">Literature</a>
+            <a href="pages/library.html">Library</a>
+            <a href="pages/class-review.html">Class Review</a>
+            <a href="pages/latin-club.html">Latin Club</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-overlay">
+            <h1>IB Latin</h1>
+            <p>University High School</p>
+        </div>
+    </header>
+
+    <section class="intro">
+        <p><em>Salve!</em> Welcome to the world of bountiful Latin knowledge compiled by University High School International Baccalaureate Latin students. Here you can:</p>
+        <ul>
+            <li>Access basic information about the language</li>
+            <li>See in-depth breakdowns of Latin literature</li>
+            <li>Watch review videos of concepts and classwork</li>
+            <li>View Mr. Thorne's extensive library</li>
+            <li>Stay up to date on Latin Club and FJCL events</li>
+        </ul>
+    </section>
+
+    <section class="nav-cards">
+        <a href="pages/language.html" class="card">
+            <span class="card-icon">🗣️</span>
+            <span class="card-label">Language</span>
+        </a>
+        <a href="pages/literature.html" class="card">
+            <span class="card-icon">📖</span>
+            <span class="card-label">Literature</span>
+        </a>
+        <a href="pages/library.html" class="card">
+            <span class="card-icon">📚</span>
+            <span class="card-label">Library</span>
+        </a>
+        <a href="pages/class-review.html" class="card">
+            <span class="card-icon">📝</span>
+            <span class="card-label">Class Review</span>
+        </a>
+        <a href="pages/latin-club.html" class="card">
+            <span class="card-icon">🏛️</span>
+            <span class="card-label">Latin Club</span>
+        </a>
+    </section>
+
+    <section class="crew-section">
+        <h2>Meet the Crew</h2>
+        <div class="carousel-container">
+            <button class="carousel-btn left" id="prevBtn">&#8249;</button>
+            <div class="carousel-track-wrapper">
+                <div class="carousel-track" id="carouselTrack">
+
+                    <div class="crew-card">
+                        <div class="crew-photo"><img src="assets/images/crew/mr-thorne.avif" alt="Mr. Thorne"></div>
+                        <h3>Mr. Thorne</h3>
+                        <p>UHS IB Latin Teacher</p>
+                    </div>
+
+                    <div class="crew-card">
+                        <div class="crew-photo"><img src="assets/images/crew/sophie.avif" alt="Sophie"></div>
+                        <h3>Sophie</h3>
+                        <p>UHS IB Latin c/o '26<br>Writer, Fact-checking</p>
+                    </div>
+
+                    <div class="crew-card">
+                        <div class="crew-photo"><img src="assets/images/crew/miranda.avif" alt="Miranda"></div>
+                        <h3>Miranda</h3>
+                        <p>UHS IB Latin c/o '26<br>Web-designer, Videographer</p>
+                    </div>
+
+                    <div class="crew-card">
+                        <div class="crew-photo"><img src="assets/images/crew/alyssa.avif" alt="Alyssa"></div>
+                        <h3>Alyssa</h3>
+                        <p>UHS IB Latin c/o '26<br>Beta Reader, Editor</p>
+                    </div>
+
+                </div>
+            </div>
+            <button class="carousel-btn right" id="nextBtn">&#8250;</button>
+        </div>
+    </section>
+
+    <section class="request-section">
+        <h2>Request Content</h2>
+        <p>Can't find what you're looking for? Let us know!</p>
+        <form id="requestForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>First Name *</label>
+                    <input type="text" id="firstName" placeholder="Tarquinius" required>
+                </div>
+                <div class="form-group">
+                    <label>Last Name *</label>
+                    <input type="text" id="lastName" placeholder="Superbus" required>
+                </div>
+                <div class="form-group">
+                    <label>Latin Class *</label>
+                    <select id="latinClass" required>
+                        <option value="">Choose one</option>
+                        <option>Latin I</option>
+                        <option>Latin II</option>
+                        <option>Latin III</option>
+                        <option>Latin V</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Request *</label>
+                <textarea id="request" rows="4" placeholder="What would you like us to cover?" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Email *</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+                <small>Use an email you actually check! We will contact you with resources via this email.</small>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+            <p id="formMessage" class="form-message"></p>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2025 UHS Latin Club · University High School</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+        <script>
+            // FORM SUBMISSION
+            document.getElementById('requestForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const msg = document.getElementById('formMessage');
+                try {
+                    await submitRequest({
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        latinClass: document.getElementById('latinClass').value,
+                        request: document.getElementById('request').value,
+                        email: document.getElementById('email').value
+                    });
+                    msg.textContent = 'Your request has been submitted! We will be in touch.';
+                    msg.style.color = 'green';
+                    document.getElementById('requestForm').reset();
+                } catch (err) {
+                    msg.textContent = 'Something went wrong. Please try again.';
+                    msg.style.color = 'red';
+                }
+            });
+
+            // CAROUSEL
+            let position = 0;
+            const cardWidth = 224;
+
+            function slide(direction) {
+                const track = document.getElementById('carouselTrack');
+                const cards = track.children.length;
+                const visible = Math.floor(track.parentElement.offsetWidth / cardWidth);
+                const max = cards - visible;
+                position = Math.max(0, Math.min(position + direction, max));
+                track.style.transform = `translateX(-${position * cardWidth}px)`;
+            }
+
+            document.getElementById('prevBtn').addEventListener('click', () => slide(-1));
+            document.getElementById('nextBtn').addEventListener('click', () => slide(1));
+
+            // EASTER EGG - click brand 5 times to access admin
+            let brandClicks = 0;
+            let brandTimer;
+
+            document.querySelector('.nav-brand').addEventListener('click', () => {
+                brandClicks++;
+                clearTimeout(brandTimer);
+                
+                if (brandClicks >= 5) {
+                    brandClicks = 0;
+                    window.location.href = 'pages/admin.html';
+                }
+
+                // reset count if you stop clicking for 2 seconds
+                brandTimer = setTimeout(() => {
+                    brandClicks = 0;
+                }, 2000);
+            });
+
+            document.querySelector('.nav-brand').style.cursor = 'pointer';
+        </script>
+
+</body>
+</html>

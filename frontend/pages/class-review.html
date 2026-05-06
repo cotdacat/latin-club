@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Review — UHS Latin</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand" id="navBrand">UHS Latin</div>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="language.html" class="nav-active">Language</a>
+            <a href="literature.html">Literature</a>
+            <a href="library.html">Library</a>
+            <a href="class-review.html">Class Review</a>
+            <a href="latin-club.html">Latin Club</a>
+        </div>
+    </nav>
+
+    <header class="page-hero" style="background: linear-gradient(135deg, #4a2d6b, #7B4FA6)">
+        <div class="page-hero-content">
+            <span class="page-hero-icon">📝</span>
+            <h1>Class Review</h1>
+            <p>Review videos and materials for each specific class</p>
+        </div>
+    </header>
+
+    <main class="page-content">
+
+        <section class="content-block">
+            <h2>Latin I</h2>
+            <p>new men</p>
+        </section>
+
+        <section class="content-block">
+            <h2>Latin II</h2>
+            <p>wise fools</p>
+        </section>
+
+        <section class="content-block">
+            <h2>Latin III</h2>
+            <p>younger ones</p>
+        </section>
+
+        <section class="content-block">
+            <h2>Latin V</h2>
+            <p>older ones</p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2025 UHS Latin Club · University High School</p>
+    </footer>
+
+    <script>
+        // EASTER EGG
+        let brandClicks = 0;
+        let brandTimer;
+        document.getElementById('navBrand').addEventListener('click', () => {
+            brandClicks++;
+            clearTimeout(brandTimer);
+            if (brandClicks >= 5) {
+                brandClicks = 0;
+                window.location.href = 'admin.html';
+            }
+            brandTimer = setTimeout(() => { brandClicks = 0; }, 2000);
+        });
+        document.getElementById('navBrand').style.cursor = 'pointer';
+    </script>
+
+</body>
+</html>
