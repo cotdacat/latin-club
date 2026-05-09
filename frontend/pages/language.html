@@ -10,7 +10,7 @@
 <body>
 
     <nav class="navbar">
-        <div class="nav-brand" id="navBrand">UHS Latin</div>
+        <div class="nav-brand" id="navBrand"><a href="index.html">UHS Latin</a></div>
         <button class="hamburger" id="hamburger" aria-label="Menu">
             <span></span>
             <span></span>
@@ -58,24 +58,10 @@
     </main>
 
     <footer>
-        <p>© 2025 UHS Latin Club · University High School</p>
+        <p>© 2026 UHS Latin Club · University High School</p>
     </footer>
 
     <script>
-        // EASTER EGG
-        let brandClicks = 0;
-        let brandTimer;
-        document.getElementById('navBrand').addEventListener('click', () => {
-            brandClicks++;
-            clearTimeout(brandTimer);
-            if (brandClicks >= 5) {
-                brandClicks = 0;
-                window.location.href = 'admin.html';
-            }
-            brandTimer = setTimeout(() => { brandClicks = 0; }, 2000);
-        });
-        document.getElementById('navBrand').style.cursor = 'pointer';
-
         // HAMBURGER MENU
         document.getElementById('hamburger').addEventListener('click', () => {
         document.getElementById('navLinks').classList.toggle('open');
