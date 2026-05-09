@@ -37,6 +37,7 @@ body {
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--purple-dark);
+    text-decoration: none;
 }
 
 .nav-links {
