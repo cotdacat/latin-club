@@ -33,29 +33,89 @@
         </div>
     </header>
 
-    <main class="page-content">
+    <main class="page-content" style="max-width: 1000px;">
 
-        <section class="content-block">
-            <h2>Textbooks</h2>
-            <p>Look, the Romans!</p>
-        </section>
+    <section class="content-block">
+        <h2>Search the Library</h2>
+        <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:0.5rem;">
+            <input type="text" id="searchInput" placeholder="Search by title or author…"
+                style="flex:1; min-width:200px; padding:0.7rem 1rem; border:1px solid #ddd;
+                       border-radius:8px; font-family:Inter,sans-serif; font-size:0.95rem; outline:none;">
+            <select id="categoryFilter"
+                style="padding:0.7rem 1rem; border:1px solid #ddd; border-radius:8px;
+                       font-family:Inter,sans-serif; font-size:0.95rem; outline:none; background:white;">
+                <option value="">All Categories</option>
+                <option>Translation</option>
+                <option>History</option>
+                <option>Biography</option>
+                <option>Reference</option>
+                <option>Fiction</option>
+            </select>
+        </div>
+    </section>
 
-        <section class="content-block">
-            <h2>Online Resources</h2>
-            <p>Latin Tutorial all the way!</p>
-        </section>
-
-        <section class="content-block">
-            <h2>Dictionaries</h2>
-            <p>Something funny</p>
-        </section>
-
-        <section class="content-block">
-            <h2>Practice Materials</h2>
-            <p>Something for the CFEs</p>
-        </section>
+    <div id="booksGrid" style="
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        padding: 0 0 2rem;
+    "></div>
 
     </main>
+
+    <script>
+        const API_BASE = 'https://latin-club-production.up.railway.app';
+        const grid = document.getElementById('booksGrid');
+        let debounceTimer;
+
+        function renderBooks(books) {
+            if (books.length === 0) {
+                grid.innerHTML = '<p style="color:var(--text-light); grid-column:1/-1;">No books found.</p>';
+                return;
+            }
+            grid.innerHTML = books.map(b => `
+                <div style="background:white; border-radius:16px; overflow:hidden;
+                            box-shadow:0 4px 12px rgba(0,0,0,0.08); display:flex; flex-direction:column;">
+                    <img src="${b.coverUrl}" alt="${b.title}"
+                        style="width:100%; aspect-ratio:2/3; object-fit:cover; background:var(--purple-light);"
+                        onerror="this.style.background='var(--purple-light)'; this.style.minHeight='180px'">
+                    <div style="padding:1rem; flex:1; display:flex; flex-direction:column; gap:0.3rem;">
+                        <span style="font-size:0.75rem; font-weight:600; color:var(--purple);
+                                    text-transform:uppercase; letter-spacing:0.05em;">${b.category}</span>
+                        <h3 style="font-family:'Playfair Display',serif; font-size:1rem; line-height:1.3;">${b.title}</h3>
+                        <p style="font-size:0.85rem; color:var(--text-light);">${b.author}</p>
+                        <p style="font-size:0.82rem; color:var(--text-light); line-height:1.6; margin-top:0.4rem; flex:1;">${b.description}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function fetchBooks() {
+            const search = document.getElementById('searchInput').value;
+            const category = document.getElementById('categoryFilter').value;
+            const params = new URLSearchParams();
+            if (search) params.set('search', search);
+            if (category) params.set('category', category);
+
+            try {
+                const res = await fetch(`${API_BASE}/api/books?${params}`);
+                const books = await res.json();
+                renderBooks(books);
+            } catch {
+                grid.innerHTML = '<p style="color:red; grid-column:1/-1;">Could not load books. Is the backend running?</p>';
+            }
+        }
+
+        document.getElementById('searchInput').addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(fetchBooks, 300); // waits 300ms after typing stops
+        });
+
+        document.getElementById('categoryFilter').addEventListener('change', fetchBooks);
+
+        // load everything on page open
+        fetchBooks();
+    </script>
 
     <footer>
         <p>© 2026 UHS Latin Club · University High School</p>

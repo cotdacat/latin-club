@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .requestMatchers("/hello").permitAll()
                 .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/requests").permitAll()
                 .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/requests").authenticated()
+                .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/books").permitAll()
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
